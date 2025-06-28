@@ -17,7 +17,7 @@ import numpy as np
 import re
 
 # -------- SETTINGS --------
-PHASE1_CSV = "Phase 1 award recipients text.csv"
+PHASE1_CSV = "Phase 1 award recipients text.csv"
 PHASE2_CSV = "Phase 2 award recipients text.csv"
 OUTPUT_CLEANED_CSV = "ised_awards_cleaned.csv"
 # --------------------------
