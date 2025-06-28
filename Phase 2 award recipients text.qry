@@ -1,0 +1,8 @@
+let
+    Source = Web.BrowserContents("https://ised-isde.canada.ca/site/innovative-solutions-canada/en/innovative-solutions-canada-awarded-companies#phase1table"),
+    #"Extracted Table From Html" = Html.Table(Source, {{"Column1", "SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR > :nth-child(1)"}, {"Column2", "SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR > :nth-child(2)"}, {"Column3", "SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR > :nth-child(3)"}, {"Column4", "SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR > :nth-child(4)"}, {"Column5", "SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR > :nth-child(5)"}, {"Column6", "SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR > :nth-child(6)"}, {"Column7", "SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR > :nth-child(7)"}}, [RowSelector="SECTION[id='s2'] > TABLE.wb-tables.table.table-striped.table-bordered > * > TR"]),
+    #"Promoted Headers" = Table.PromoteHeaders(#"Extracted Table From Html", [PromoteAllScalars=true]),
+    
+    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"Challenge", type text}, {"Department", type text}, {"Innovator", type text}, {"City, Province or Territory", type text}, {"Province", type text}, {"Awarded amount (*Applicable taxes included)", type text}, {"Award date", type text}})
+in
+    #"Changed Type"
